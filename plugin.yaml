@@ -1,0 +1,33 @@
+name: py-hello-step
+version: 1.0.0
+rundeckPluginVersion: 1.2
+author: Alex Honor
+date: 2017/03/22
+providers:
+  - name: py-hello-step
+    service: WorkflowNodeStep
+    title: 'py / hello'
+    description: 'say hello'
+    plugin-type: script
+    script-interpreter: /usr/bin/env python -u
+    script-file: hello.py
+    script-args: ${config.message}
+    config:
+      - type: String
+        name: message
+        description: The message to print
+  - name: py-port-open
+    service: WorkflowNodeStep
+    title: 'py / port-open'
+    description: 'check if the port is open'
+    plugin-type: script
+    script-interpreter: /usr/bin/env python -u
+    script-file: port_open.py
+    script-args: ${config.port}
+    config:
+      - type: String
+        name: port
+        description: The port to check
+      - type: String
+        name: timeout
+        description: The timeout value
